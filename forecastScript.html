@@ -1,0 +1,13 @@
+<script>
+    var x = new XMLHttpRequest();
+    x.open("GET", "ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ10606.xml", true);
+    x.onreadystatechange = function () {
+        if (x.readyState == 4 && x.status == 200) {
+            var doc = x.responseXML;
+            var thisworks = doc.querySelector('[aac="QLD_PW015"] [index="0"] [type="forecast"]');
+            var trunc = thisworks.innerHTML.substr(0, 80) + "\u2026"
+            console.error(trunc);
+        }
+    };
+    x.send(null);
+</script>
